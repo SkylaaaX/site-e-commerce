@@ -1,0 +1,5 @@
+- [x] Fix cart/checkout montant = 0 issue by unifying PanierContext imports and normalizing panier pricing.
+- [ ] Update `myprojet/src/Projet/MonEspace.jsx`:
+  - [ ] Add “Enregistrer mes informations de paiement” action
+  - [ ] Add saved payment infos selection UI (localStorage per user)
+  - [ ] Keep order payment action button in the Mon Espace payment section (separate from save)

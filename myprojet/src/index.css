@@ -1,0 +1,90 @@
+/* ── Premium Modern Typography System ── */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg: #050814;
+  --bg-secondary: #08102b;
+  --card: #0f172a;
+  --card-hover: #172a4f;
+  --text: #eef2ff;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --accent: #f43f5e;
+  --accent-light: #fb7185;
+  --accent-2: #3b82f6;
+  --accent-2-light: #60a5fa;
+  --border: rgba(226, 232, 240, 0.08);
+  --border-hover: rgba(226, 232, 240, 0.16);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  
+  /* Typography */
+  font-family: 'Sora', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; min-height: 100vh; }
+
+body { 
+  min-width: 320px; 
+  overflow-x: hidden; 
+  background: 
+    radial-gradient(circle at 20% 25%, rgba(244, 63, 94, 0.18), transparent 26%),
+    radial-gradient(circle at 85% 20%, rgba(59, 130, 246, 0.14), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(79, 70, 229, 0.12), transparent 25%),
+    linear-gradient(135deg, #030515 0%, #090f29 40%, #07102e 70%, #02040c 100%);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(244, 63, 94, 0.08), rgba(59, 130, 246, 0.08));
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  animation: subtlePulse 14s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+
+/* Reset default styles */
+a { color: var(--accent); text-decoration: none; }
+a:hover, a:focus { color: var(--accent-2); }
+button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* Selection */
+::selection { background: rgba(0, 217, 255, 0.25); color: var(--text); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { 
+  background: rgba(255, 255, 255, 0.08); 
+  border-radius: 8px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 { 
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
