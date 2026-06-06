@@ -313,11 +313,19 @@ function MonEspace() {
     }, 0).toFixed(2);
 
     try {
+      const items = panier.map((article) => ({
+        idProduit: Number(article.idProduit),
+        quantite: Math.max(1, Number(article.quantite || 1)),
+        prix: Number(article.prix ?? article.price ?? 0) || 0,
+        nom: article.nom || "",
+      }));
+
       const response = await fetch("http://localhost:3000/api/user/orders", {
         method: "POST",
         headers: apiHeaders(),
         body: JSON.stringify({
           montant,
+          items,
           paymentMethod: paymentData.method,
           cardNumber: paymentData.cardNumber,
           paypalEmail: paymentData.paypalEmail,

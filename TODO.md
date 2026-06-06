@@ -1,5 +1,24 @@
-- [x] Fix cart/checkout montant = 0 issue by unifying PanierContext imports and normalizing panier pricing.
-- [ ] Update `myprojet/src/Projet/MonEspace.jsx`:
-  - [ ] Add “Enregistrer mes informations de paiement” action
-  - [ ] Add saved payment infos selection UI (localStorage per user)
-  - [ ] Keep order payment action button in the Mon Espace payment section (separate from save)
+# TODO
+
+- [x] Update backend models for order items and popularity tracking
+  - [x] Back-end/src/models/Commande.js: add `items`
+  - [x] Back-end/src/models/Produit.js: add `nb_commandes`
+- [x] Update backend order lifecycle logic
+  - [x] Back-end/src/controllers/userController.js: decrement stock + increment popularity on order create
+  - [x] Back-end/src/controllers/userController.js: restore stock on order delete/cancel
+- [x] Update frontend payment payload
+  - [x] myprojet/src/Projet/MonEspace.jsx: send detailed order items
+- [x] Add favorites feature
+  - [x] myprojet/src/Projet/Menu.jsx: add "Favoris" in main menu
+  - [x] myprojet/src/Projet/Main.jsx: add `/favoris` route
+  - [x] myprojet/src/Projet/Catalogue.jsx: favorite/unfavorite toggle + persistence
+  - [x] myprojet/src/Projet/Favoris.jsx: new favorites section page
+- [x] Update catalogue wording and trending display
+  - [x] myprojet/src/Projet/Catalogue.jsx: "Les plus populaires"
+  - [x] myprojet/src/Projet/Catalogue.jsx: show "Tendance" bar based on popularity
+- [ ] Validation
+  - [ ] Run checks and verify stock/order/favorites/trending behavior
+- [x] Feedback fixes
+  - [x] Fix "Voir le détail" blank page and ensure robust detail modal rendering
+  - [x] Enhance detail modal content (photo, description, price, category, stock, ordered count)
+  - [x] Change wording to "Produits tendance" linked to order count

@@ -7,6 +7,7 @@ import Catalogue from "./Catalogue.jsx";
 import Panier from "./Panier.jsx";
 import MonEspace from "./MonEspace.jsx";
 import Admin from "./Admin.jsx";
+import Favoris from "./Favoris.jsx";
 
 function Main() {
   return (
@@ -20,6 +21,7 @@ function Main() {
         <Route path="/panier" element={<Panier />} />
         <Route path="/mon-espace" element={<MonEspace />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/favoris" element={<Favoris />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </main>

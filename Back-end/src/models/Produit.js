@@ -32,6 +32,11 @@ const Produit = sequelize.define('Produit', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  nb_commandes: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
 }, {
   tableName: 'Produits',
   timestamps: false,

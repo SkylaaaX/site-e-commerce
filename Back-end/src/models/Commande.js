@@ -38,6 +38,10 @@ const Commande = sequelize.define('Commande', {
     allowNull: false,
     defaultValue: DataTypes.NOW,
   },
+  items: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
 }, {
   tableName: 'Commande',
   timestamps: false,

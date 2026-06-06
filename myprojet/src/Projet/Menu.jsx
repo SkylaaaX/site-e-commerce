@@ -13,6 +13,7 @@ function Header() {
       { path: "/home", label: "Accueil" },
       { path: "/catalogue", label: "Catalogue" },
       { path: "/panier", label: "Panier" },
+      { path: "/favoris", label: "Favoris" },
     ],
     []
   );
