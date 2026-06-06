@@ -145,13 +145,13 @@ function Panier() {
   };
 
   return (
-    <div style={styles.page}>
+    <div style={styles.page} className="page-enter section-reveal">
       <div style={styles.container}>
-        <h1 style={styles.title}>Mon Panier</h1>
+        <h1 style={styles.title} className="gradient-title">Mon Panier</h1>
         <p style={styles.subtitle}>{panier.length} article{panier.length !== 1 ? "s" : ""}</p>
 
         {panier.length === 0 ? (
-          <div style={styles.empty}>
+          <div style={styles.empty} className="card-polish interactive-lift">
             <p style={{ fontSize: "24px", marginBottom: "12px" }}>Votre panier est vide.</p>
             <p style={{ color: "#475569" }}>Ajoutez des produits depuis le catalogue pour commencer.</p>
             <Link to="/catalogue" style={styles.button}>
@@ -162,7 +162,7 @@ function Panier() {
           <div style={styles.grid}>
             <div>
               {panier.map((item) => (
-                <div key={item.idProduit} style={styles.item}>
+                <div key={item.idProduit} style={styles.item} className="card-polish interactive-lift stagger-item">
                   <img src={item.image} alt={item.nom} style={styles.image} />
                   <div>
                     <div style={styles.itemName}>{item.nom}</div>
@@ -190,7 +190,7 @@ function Panier() {
               ))}
             </div>
 
-            <div style={styles.summary}>
+            <div style={styles.summary} className="card-polish interactive-lift">
               <div style={styles.summaryTitle}>Résumé de la commande</div>
               <div style={styles.summaryRow}>
                 <span>Sous-total</span>

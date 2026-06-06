@@ -105,13 +105,13 @@ function Favoris() {
   };
 
   return (
-    <div style={styles.page}>
+    <div style={styles.page} className="page-enter section-reveal">
       <div style={styles.container}>
-        <h1 style={styles.title}>Mes favoris</h1>
+        <h1 style={styles.title} className="gradient-title">Mes favoris</h1>
         <p style={styles.subtitle}>{totalFavoris} article{totalFavoris > 1 ? "s" : ""}</p>
 
         {favoris.length === 0 ? (
-          <div style={styles.empty}>
+          <div style={styles.empty} className="card-polish interactive-lift">
             <p>Aucun favori pour le moment.</p>
             <button style={styles.button} onClick={() => navigate("/catalogue")}>
               Découvrir le catalogue
@@ -120,7 +120,7 @@ function Favoris() {
         ) : (
           <div style={styles.grid}>
             {favoris.map((item) => (
-              <div key={item.idProduit} style={styles.card}>
+              <div key={item.idProduit} style={styles.card} className="card-polish interactive-lift stagger-item">
                 <img src={item.image} alt={item.nom} style={styles.image} />
                 <div style={styles.name}>{item.nom}</div>
                 <div style={styles.price}>{item.prix} €</div>

@@ -19,12 +19,6 @@ function Catalogue() {
     );
   }, [produits, recherche]);
 
-  const produitsPopulaires = useMemo(() => {
-    return [...produitsFiltres].sort(
-      (a, b) => Number(b.nb_commandes || 0) - Number(a.nb_commandes || 0)
-    );
-  }, [produitsFiltres]);
-
   useEffect(() => {
     refreshProducts();
 
@@ -93,21 +87,30 @@ function Catalogue() {
       position: "relative",
       overflow: "hidden",
     },
-    tendanceBar: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: "#ef4444",
-      color: "#fff",
-      fontWeight: 800,
-      fontSize: "11px",
-      letterSpacing: "0.4px",
-      padding: "6px 8px",
-      textTransform: "uppercase",
-    },
     tag: { display: "inline-block", marginBottom: "10px", padding: "6px 14px", borderRadius: "999px", backgroundColor: "#00d9ff", color: "#070a1a", fontSize: "12px", fontWeight: "700" },
-    image: { width: "100%", height: "180px", objectFit: "contain", borderRadius: "10px", marginBottom: "10px", backgroundColor: "#070a1a" },
+    imageWrap: {
+      width: "100%",
+      height: "190px",
+      borderRadius: "14px",
+      overflow: "hidden",
+      marginBottom: "10px",
+      marginTop: "6px",
+      background: "linear-gradient(160deg, rgba(10,18,42,0.95), rgba(8,14,33,0.92))",
+      border: "1px solid rgba(148,163,184,0.14)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
+      zIndex: 1,
+    },
+    image: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center",
+      display: "block",
+      transform: "scale(1.01)",
+    },
     name: { fontSize: "16px", fontWeight: "600", marginBottom: "5px", color: "#eef2ff" },
     price: { fontSize: "15px", marginBottom: "10px", color: "#60a5fa" },
     button: { padding: "10px", width: "100%", backgroundColor: "#00d9ff", border: "none", borderRadius: "25px", color: "#070a1a", cursor: "pointer", fontSize: "14px", fontWeight: "500" },
@@ -138,7 +141,7 @@ function Catalogue() {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="page-enter section-reveal">
       <input
         type="text"
         placeholder="Rechercher un produit..."
@@ -149,8 +152,8 @@ function Catalogue() {
         onBlur={(e) => (e.target.style.borderColor = "#dcdcdc")}
       />
 
-      <div style={styles.header}>
-        <h2 style={styles.title}>Produits tendance</h2>
+      <div style={styles.header} className="section-reveal">
+        <h2 style={styles.title} className="gradient-title">Catalogue</h2>
         <div style={styles.panierContainer}>
           <span style={styles.panierCompteur}>
             🛒 {panier.reduce((total, item) => total + (item.quantite || 1), 0)}
@@ -168,14 +171,12 @@ function Catalogue() {
       </div>
 
       <div style={styles.grid}>
-        {produitsPopulaires.map((p, index) => (
-          <div key={p.idProduit} style={styles.card}>
-            {(Number(p.nb_commandes || 0) >= 3 || index < 3) && (
-              <div style={styles.tendanceBar}>Tendance</div>
-            )}
-
+        {produitsFiltres.map((p) => (
+          <div key={p.idProduit} style={styles.card} className="card-polish interactive-lift stagger-item">
             {p.tag && <div style={{ ...styles.tag, marginTop: "18px" }}>{p.tag}</div>}
-            <img src={p.image} alt={p.nom} style={styles.image} />
+            <div style={styles.imageWrap}>
+              <img src={p.image} alt={p.nom} style={styles.image} />
+            </div>
             <div style={styles.name}>{p.nom}</div>
             <div style={styles.price}>{p.prix} €</div>
             <div style={{ fontSize: "13px", color: "#666", marginBottom: "8px" }}>

@@ -15,7 +15,7 @@ main {
 
 /* Smooth transitions */
 * {
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, transform 0.24s ease;
 }
 
 /* Button reset and modern styling */
@@ -23,13 +23,14 @@ button {
   font-family: 'Sora', system-ui, -apple-system, sans-serif;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 10px;
-  border: none;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
 }
 
 button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(5, 20, 52, 0.35);
 }
 
 button:active {
@@ -44,7 +45,7 @@ a {
 }
 
 a:hover {
-  color: #00d9ff;
+  color: var(--accent-light);
 }
 
 /* Input styles */
@@ -57,11 +58,11 @@ select {
   font-family: 'Sora', system-ui, -apple-system, sans-serif;
   font-size: 15px;
   color: var(--text);
-  background-color: var(--card);
+  background: linear-gradient(165deg, rgba(17, 33, 66, 0.85), rgba(10, 22, 44, 0.9));
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 12px 16px;
-  transition: all 0.3s ease;
+  transition: all 0.28s ease;
   outline: none;
 }
 
@@ -71,9 +72,9 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 textarea:focus,
 select:focus {
-  border-color: rgba(0, 217, 255, 0.4);
+  border-color: rgba(103, 232, 249, 0.58);
   background-color: var(--card-hover);
-  box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12), 0 10px 28px rgba(8, 31, 79, 0.3);
 }
 
 textarea {
@@ -129,7 +130,26 @@ textarea {
 }
 
 .slide-in {
-  animation: slideIn 0.4s ease;
+  animation: slideIn 0.45s ease;
+}
+
+.card-polish {
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, rgba(15, 28, 57, 0.84), rgba(9, 18, 39, 0.92));
+  box-shadow: 0 12px 32px rgba(3, 12, 34, 0.4);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.card-polish:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 46px rgba(3, 14, 41, 0.52);
+  border-color: var(--border-hover);
+}
+
+.gradient-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.7), rgba(59, 130, 246, 0.7), transparent);
 }
 
 /* Responsive design */

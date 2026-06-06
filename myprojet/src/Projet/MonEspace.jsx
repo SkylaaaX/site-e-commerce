@@ -463,8 +463,8 @@ function MonEspace() {
   };
 
   if (!user) {
-    return (
-      <div style={styles.page}>
+  return (
+    <div style={styles.page} className="page-enter section-reveal">
         <div style={styles.panel}>
           <h2 style={styles.title}>Mon Espace</h2>
           <p style={{ color: "#cbd5e1" }}>
@@ -511,7 +511,7 @@ function MonEspace() {
 
           {message && <div style={{ color: "#60a5fa", marginBottom: "10px" }}>{message}</div>}
 
-          <h2 style={styles.title}>Bienvenue, {user.prenom || user.nom}</h2>
+          <h2 style={styles.title} className="gradient-title">Bienvenue, {user.prenom || user.nom}</h2>
           <div style={{ color: "#cbd5e1" }}>Gérez vos informations personnelles, sauvegardez votre adresse et suivez vos commandes.</div>
         </div>
 
@@ -531,6 +531,7 @@ function MonEspace() {
 
       <div style={styles.container}>
         <div
+          className="card-polish interactive-lift section-reveal"
           style={{
             ...styles.panel,
             display: section && section !== "profile" ? "none" : "block",
@@ -658,6 +659,7 @@ function MonEspace() {
         </div>
 
         <div
+          className="card-polish interactive-lift section-reveal"
           style={{
             ...styles.panel,
             display: section && section !== "orders" && section !== "payment" ? "none" : "block",
@@ -684,7 +686,7 @@ function MonEspace() {
             <p style={{ color: '#cbd5e1' }}>Aucune commande disponible pour le moment.</p>
           )}
           {orders.map((commande) => (
-            <div key={commande.idCommande} style={styles.orderCard}>
+            <div key={commande.idCommande} style={styles.orderCard} className="stagger-item">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', gap: '12px' }}>
                 <div style={{ fontSize: '16px', fontWeight: 700, color: '#eef2ff' }}>Commande #{commande.idCommande}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

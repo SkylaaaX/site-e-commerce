@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState, useEffect } from "react";
 import { UserContext } from "./Context/UserContext.js";
 
 function Header() {
@@ -7,6 +7,7 @@ function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = useMemo(
     () => [
@@ -20,11 +21,40 @@ function Header() {
 
   const isActive = (path) => location.pathname === path;
 
+  useEffect(() => {
+    let rafId = null;
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 24);
+        rafId = null;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   const styles = {
     header: {
-      backgroundColor: "#070a1a",
-      borderBottom: "1px solid rgba(255,255,255,0.08)",
-      padding: "14px 32px",
+      background: isScrolled
+        ? "linear-gradient(135deg, rgba(7,12,33,0.94), rgba(10,22,54,0.92), rgba(19,35,74,0.9))"
+        : "linear-gradient(135deg, rgba(7,10,26,0.85), rgba(8,19,46,0.8), rgba(9,27,67,0.78))",
+      borderBottom: isScrolled
+        ? "1px solid rgba(103,232,249,0.35)"
+        : "1px solid rgba(255,255,255,0.08)",
+      padding: "12px 32px",
+      position: "sticky",
+      top: 0,
+      zIndex: 90,
+      transform: isScrolled ? "translateY(-1px)" : "translateY(0)",
+      backdropFilter: "blur(8px)",
+      boxShadow: isScrolled ? "0 10px 22px rgba(4,10,30,0.35)" : "0 2px 10px rgba(4,10,30,0.12)",
+      transition: "background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, transform 0.4s ease",
     },
     container: {
       maxWidth: "1200px",
@@ -39,11 +69,14 @@ function Header() {
     logo: {
       textDecoration: "none",
       color: "#fff",
-      fontWeight: 700,
-      fontSize: "22px",
+      fontWeight: 800,
+      fontSize: "21px",
       display: "flex",
       alignItems: "center",
       gap: "10px",
+      transition: "transform 0.35s ease, text-shadow 0.35s ease",
+      letterSpacing: "0.3px",
+      textShadow: "0 8px 24px rgba(26, 132, 255, 0.28)",
     },
     nav: {
       display: "flex",
@@ -51,12 +84,17 @@ function Header() {
       flexWrap: "wrap",
     },
     navLink: (active) => ({
-      color: active ? "#00d9ff" : "#cbd5e1",
+      color: active ? "#a5f3fc" : "#cbd5e1",
       textDecoration: "none",
       fontWeight: active ? 700 : 500,
-      padding: "8px 12px",
-      borderRadius: "8px",
-      backgroundColor: active ? "rgba(0, 217, 255, 0.12)" : "transparent",
+      padding: "9px 13px",
+      borderRadius: "10px",
+      background: active
+        ? "linear-gradient(90deg, rgba(34,211,238,0.2), rgba(59,130,246,0.2))"
+        : "transparent",
+      border: active ? "1px solid rgba(103,232,249,0.35)" : "1px solid transparent",
+      transform: active ? "translateY(-1px)" : "translateY(0)",
+      transition: "all 0.28s ease",
     }),
     user: {
       display: "flex",
@@ -144,11 +182,13 @@ function Header() {
         <Link
           to="/home"
           style={styles.logo}
+          className="section-reveal"
           onClick={() => {
             setOpenDropdown(false);
           }}
         >
-          <span>🥽</span> VR-Store
+          <span style={{ filter: "drop-shadow(0 6px 16px rgba(59,130,246,0.35))" }}>🥽</span>
+          <span className="gradient-title">VR-Store</span>
         </Link>
 
         <nav style={styles.nav}>
@@ -156,6 +196,7 @@ function Header() {
             <Link
               key={item.path}
               to={item.path}
+              className="stagger-item"
               style={styles.navLink(isActive(item.path))}
               onClick={() => setOpenDropdown(false)}
             >
